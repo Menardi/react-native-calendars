@@ -86,23 +86,23 @@ class Day extends Component {
         return prev;
       }
 
-      const color = next.color;
+      const { color, fillerColor } = next;
       if (next.status === 'NotAvailable') {
         prev.textStyle = this.style.naText;
       }
       if (next.startingDay) {
         prev.startingDay = {
-          color
+          color, fillerColor
         };
       }
       if (next.endingDay) {
         prev.endingDay = {
-          color
+          color, fillerColor
         };
       }
       if (!next.startingDay && !next.endingDay) {
         prev.day = {
-          color
+          color, fillerColor
         };
       }
       if (next.textColor) {
@@ -152,7 +152,7 @@ class Day extends Component {
           backgroundColor: this.theme.calendarBackground
         };
         rightFillerStyle = {
-          backgroundColor: flags.startingDay.color
+          backgroundColor: flags.startingDay.fillerColor
         };
         containerStyle.push({
           backgroundColor: flags.startingDay.color
@@ -162,7 +162,7 @@ class Day extends Component {
           backgroundColor: this.theme.calendarBackground
         };
         leftFillerStyle = {
-          backgroundColor: flags.endingDay.color
+          backgroundColor: flags.endingDay.fillerColor
         };
         containerStyle.push({
           backgroundColor: flags.endingDay.color
@@ -171,7 +171,7 @@ class Day extends Component {
         leftFillerStyle = {backgroundColor: flags.day.color};
         rightFillerStyle = {backgroundColor: flags.day.color};
         // #177 bug
-        fillerStyle = {backgroundColor: flags.day.color};
+        fillerStyle = {backgroundColor: flags.day.fillerColor};
       } else if (flags.endingDay && flags.startingDay) {
         rightFillerStyle = {
           backgroundColor: this.theme.calendarBackground
